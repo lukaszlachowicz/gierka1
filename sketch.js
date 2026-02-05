@@ -7,7 +7,7 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(0);
   board.show();
 }
 
@@ -97,3 +97,4 @@ class Board {
 function mouseClicked() {
   board.clicked(mouseX, mouseY);
 }
+
