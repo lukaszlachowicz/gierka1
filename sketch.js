@@ -2,12 +2,16 @@ let board;
 let turn = 1;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 800);
   board = new Board();
+  let button = createButton("Reset");
+  button.position(width, 0);
+  button.size(200, 50)
+  button.mousePressed(resetGame);
 }
 
 function draw() {
-  background(0);
+  background(220);
   board.show();
 }
 
@@ -34,6 +38,14 @@ class Board {
     }
   }
 
+  resetBoard() {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        this.board[i][j] = 255;
+      }
+    }
+  }
+
   clicked(mx, my) {
     let reset = true;
     for (let i = 0; i < 3; i++) {
@@ -44,11 +56,7 @@ class Board {
       }
     }
     if (reset) {
-      for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-          this.board[i][j] = 255;
-        }
-      }
+      this.resetBoard();
       return;
     }
 
@@ -98,3 +106,7 @@ function mouseClicked() {
   board.clicked(mouseX, mouseY);
 }
 
+function resetGame() {
+  board.resetBoard();
+  turn = 1;
+}
